@@ -1,0 +1,187 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Juego A Rol
+Public API of the **Juego A Rol** application
+
+# Group Login API
+Notes related to the user identification
+
+## Login Endpoint [/login]
+### Login into the application [POST]
++ Request (application/json)
+
+        { "username": "mgdelacroix", "password": "secret" }
+
++ Response 200 (application/json)
+
+        { "token": "my-secret-token" }
+
+## Logout Endpoint [/logout]
+### Logout from the application [POST]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
++ Response 204
+
+# Group Users API
+
+## Users [/users]
+### List all users [GET]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+        
++ Response 200 (application/json)
+
+        [
+            { "id": 1, "username": "mgdelacroix" },
+            { "id": 2, "username": "laparca" }
+        ]
+
+### Create a new user [POST]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
+    + Body
+
+            { "username": "mgdelacroix" }
+        
++ Response 200 (application/json)
+
+        { "id": 1, "username": "mgdelacroix" }
+
+## User details [/users/{userId}]
+### Retrieve user details [GET]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+            
++ Response 200 (application/json)
+
+        { "id": 1, "username": "mgdelacroix" }
+    
+### Update user details [PUT]
++ Request (application/json)
+    + Headers
+    
+            Authentication: Bearer my-secret-token
+
+    + Body
+    
+            { "username": "mgdelacroix2" }
+            
++ Response 204
+
+### Delete user [DELETE]
++ Request
+    + Headers
+    
+            Authentication: Bearer my-secret-token
+
++ Response 204
+
+# Group Characters API
+## Characters [/characters]
+### List all characters [GET]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Glorfindel",
+                "owner": {
+                    "id": 1,
+                    "username": "mgdelacroix"
+                },
+                "game": 27
+            }
+        ]
+
+### Create character [POST]
++ Request (application/json)
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
+    + Body
+
+            { "name": "Glorfindel", "game": 27 }
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Glorfindel",
+                "owner": {
+                    "id": 1,
+                    "username": "mgdelacroix"
+                },
+                "game": 27
+            },
+            {
+                "id": 2,
+                "name": "Arwen",
+                "owner": {
+                    "id": 1,
+                    "username": "laurapareja"
+                },
+                "game": 27
+            }
+        ]
+        
+
+## Character details [/characters/{characterId}]
+### Obtain character details [GET]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "name": "Glorfindel",
+            "owner": {
+                "id": 1,
+                "username": "mgdelacroix"
+            },
+            "game": 27
+        }
+
+### Update character details [PUT]
++ Request (application/json)
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
+    + Body
+
+            {
+                "name": "Gloooorfindel",
+                "owner": 1,
+                "game": 27
+            }
+
++ Response 204
+
+### Delete character [DELETE]
++ Request
+    + Headers
+
+            Authentication: Bearer my-secret-token
+
++ Response 204
