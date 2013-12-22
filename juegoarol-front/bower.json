@@ -1,0 +1,20 @@
+{
+    "name": "juegoarol",
+    "version": "0.1.0",
+    "homepage": "https://github.com/lazy-coders/juegoarol",
+    "authors": [
+        "Miguel de la Cruz <mgdelacroix@gmail.com>"
+    ],
+    "license": "BSD",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "app/bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "ember.js": "~1.2.0"
+    }
+}
